@@ -1,20 +1,28 @@
-function handleSubmit(event) {
-  event.preventDefault();
+function buttonSubmit (event) {
+   event.preventDefault();
 }
 
-function clearFields() {
-  const formElements = document.querySelectorAll('input');
-  const textArea = document.querySelector('textarea');
-  for (let index = 0; index < formElements.length; index += 1) {
-    const userInput = formElements.length[index];
+window.onload = function () {
+  const submitButton = document.querySelector('#submit-button');
+  submitButton.addEventListener('click', buttonSubmit);
+};
+
+function resetFields (event) {
+   const formElements = document.querySelectorAll('input');
+   const textArea = document.querySelector('textarea');
+
+   for(let index = 0; index < formElements.length; index +=1){
+    const userInput = formElements[index];
     userInput.value = '';
     userInput.checked = false;
-  }
-  textArea.value = '';
+
+   }
+   textArea.value = '';
 }
+
 window.onload = function () {
-  const clearButton = document.querySelector('#clear-button');
-  clearButton.addEventListener('click', clearFields);
-  const submitButton = document.querySelector('#submit-button');
-  submitButton.addEventListener('click', handleSubmit);
+  const clearFields = document.querySelector('#reset-fields');
+  clearFields.addEventListener('click', resetFields);
+  const submitBtn = document.querySelector('#submit-button');
+  submitBtn.addEventListener('click', buttonSubmit);
 };
