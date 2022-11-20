@@ -20,3 +20,8 @@ test('Não exibir a mensagem caso o email ainda não tenha sido enviado.', () =>
 test('Mudar a cor do texto caso o email seja válido ou inválido.', () => {
     
 })  
+test('Testando se o componente não aparece caso o campo e-mail esteja vazio.', () => {
+  render(<ValidEmail email="" />)
+  const isValidText = screen.queryByTestId('id-is-email-valid');
+  expect(isValidText).not.toBeInTheDocument();
+})
