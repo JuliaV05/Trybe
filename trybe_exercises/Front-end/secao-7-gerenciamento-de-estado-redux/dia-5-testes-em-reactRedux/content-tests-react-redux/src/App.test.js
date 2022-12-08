@@ -52,5 +52,17 @@ describe('Testa o clique dos botões', () => {
         userEvent.click(buttons[1]);
         expect(screen.getByText('11')).toBeInTheDocument();
       })
+
+      test('Incrementa o valor da store ao clicar no botão', () => {
+        const { store } = renderWithRedux(<App />);
+
+        expect(screen.getByText('0')).toBeInTheDocument();
+
+        const button = screen.getByText('Incrementa 1');
+        userEvent.click(button);
+        expect(screen.getByText('1')).toBeInTheDocument();
+        // testando se o valor foi realmente incrementado na store
+        expect(store.getState().counterReducer.count).toBe(1);
+      })
 })
 
